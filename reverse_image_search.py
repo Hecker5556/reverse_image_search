@@ -288,11 +288,12 @@ class reverse_image_search:
                 SOCS = await self._get_SOCS(session)
             else:
                 with open("cookie_google", "r") as f1:
+                    a = f1.read()
                     try:
-                        if len(f1.read().split('\t')) != 2 or datetime.now() > datetime.fromisoformat(f1.read().split('\t')[1]):
+                        if len(a.split('\t')) != 2 or datetime.now() > datetime.fromisoformat(a.split('\t')[1]):
                             SOCS = await self._get_SOCS(session)
                         else:
-                            SOCS = f1.read().split('\t')[0]
+                            SOCS = a.split('\t')[0]
                     except:
                         SOCS = await self._get_SOCS(session)
             cookies = {
